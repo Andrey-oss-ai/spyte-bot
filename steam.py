@@ -1,7 +1,9 @@
+import pickle
+
 import requests
-import pickle, os
-from main import bot, dp, ROOT_DIR
 from bs4 import BeautifulSoup as BS
+
+from main import ADMIN_ID, ROOT_DIR, bot
 
 URL = 'https://playisgame.com/halyava/steam'
 
@@ -38,7 +40,7 @@ async def send_steam_news():
     all_records = parse_site()
     try:
         new_items = set(all_records) - set(read_file())
-    except:
+    except FileNotFoundError:
         create_file()
         new_items = set(all_records) - set(read_file())
     for item in new_items:
@@ -47,6 +49,7 @@ async def send_steam_news():
         href = f'<a href="{link}">{item}</a>'
 
         await bot.answer(
+            ADMIN_ID,
             photo=img_link,
             caption=href,
             parse_mode='HTML'

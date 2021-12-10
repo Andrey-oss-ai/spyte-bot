@@ -2,11 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 from columnar import columnar
 
+from main import ADMIN_ID, bot
+
 URL = 'https://yandex.ru/pogoda/moscow/details'
 TABLE = 'weather-table'
 BODY = f'{TABLE}__body-cell'
 
-async def send_weather(msg):
+async def send_weather():
     req = requests.get(URL)
     soup = BeautifulSoup(req.text, 'html.parser')
     weather_block = soup.find(class_=f'{TABLE}__body').find_all(class_=f'{TABLE}__row')
@@ -31,5 +33,5 @@ async def send_weather(msg):
 
     headers = None
     weather = columnar(data, headers, no_borders=True)
-    await msg.answer(weather)
+    await bot.send_message(ADMIN_ID, weather)
     
