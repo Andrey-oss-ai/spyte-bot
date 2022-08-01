@@ -2,16 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 from columnar import columnar
 
-from main import ADMIN_ID, bot
+from src.bot import bot
+from src.core import ADMIN_ID, URL_WEATHER
+from src.core.loging import logger
 
-URL = 'https://yandex.ru/pogoda/moscow/details'
 TABLE = 'weather-table'
 BODY = f'{TABLE}__body-cell'
 
-async def send_weather():
-    req = requests.get(URL)
+
+def get_weather():
+    req = requests.get(URL_WEATHER)
     soup = BeautifulSoup(req.text, 'html.parser')
-    weather_block = soup.find(class_=f'{TABLE}__body').find_all(class_=f'{TABLE}__row')
+    weather_table = soup.find(class_=f'{TABLE}__body')
+    weather_block = weather_table.find_all(class_=f'{TABLE}__row')
     data = []
     for elem in weather_block:
         time = elem.find(class_=f'{TABLE}__daypart').text
@@ -19,7 +22,8 @@ async def send_weather():
         precipitation = elem.find(class_=f'{BODY}_type_condition').text
         humidity = elem.find(class_=f'{BODY}_type_humidity').text
         wind = elem.find(class_='wind-speed').text
-        real = elem.find(class_=f'{BODY}_type_feels-like').text
+        pre_real = elem.find(class_=f'{BODY}_type_feels-like')
+        real = pre_real.find(class_='temp__value temp__value_with-unit').text
         data.append(
             [
                 time,
@@ -33,5 +37,9 @@ async def send_weather():
 
     headers = None
     weather = columnar(data, headers, no_borders=True)
-    await bot.send_message(ADMIN_ID, weather)
-    
+    return weather
+
+
+async def send_weather():
+    await bot.send_message(ADMIN_ID, get_weather())
+    logger.info(f'Send weather to {ADMIN_ID}')
