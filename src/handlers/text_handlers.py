@@ -1,12 +1,13 @@
 from aiogram.dispatcher.filters import Text
 from aiogram.types import Message
+
+from src.bot import bot, dp
 from src.core import ADMIN_ID
-from src.bot import dp, bot
 from src.services import get_horoscope, get_weather, send_steam_news
 
 
 async def send_on_startup(*args):
-    await bot.send_message(ADMIN_ID, "Raspberry started")
+    await bot.send_message(ADMIN_ID, 'Raspberry started')
 
 
 @dp.message_handler(Text(equals=['horoscope'], ignore_case=True))
