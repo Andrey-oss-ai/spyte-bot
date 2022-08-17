@@ -1,10 +1,22 @@
 from aiogram import executor
-
+import asyncio
+import aioschedule as schedule
 import handlers  # noqa
 import middlewares  # noqa
 from src.bot import dp
+from services import send_finished_torents
+
+
+async def scheduler():
+    schedule.every(1).minutes.do(send_finished_torents)
+    while True:
+        await schedule.run_pending()
+        await asyncio.sleep(2)
+
 
 if __name__ == '__main__':
+    loop = asyncio.get_event_loop()
+    asyncio.ensure_future(scheduler())
     executor.start_polling(
         dp,
         skip_updates=True,

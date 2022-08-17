@@ -1,5 +1,5 @@
 import plexapi.exceptions
-from config import PLEX_SERVER, PLEX_USERNAME, PLEX_PASSWORD
+from .config import PLEX_SERVER, PLEX_USERNAME, PLEX_PASSWORD
 from plexapi.myplex import MyPlexAccount
 
 account = MyPlexAccount(PLEX_USERNAME, PLEX_PASSWORD)
