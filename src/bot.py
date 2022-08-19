@@ -1,7 +1,7 @@
 from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-from core.config import TOKEN
+from core import TOKEN
 
 bot = Bot(token=TOKEN)
 storage = MemoryStorage()

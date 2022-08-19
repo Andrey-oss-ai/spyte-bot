@@ -1,7 +1,7 @@
 from aiogram.dispatcher.filters import Text
 from aiogram.types import Message
 
-from src.bot import bot, dp
+from src import bot, dp
 from src.core import ADMIN_ID
 from src.services import get_horoscope, get_weather, send_steam_news
 

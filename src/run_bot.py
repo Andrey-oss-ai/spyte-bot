@@ -1,10 +1,13 @@
+import sys
 from aiogram import executor
 import asyncio
 import aioschedule as schedule
 import handlers  # noqa
 import middlewares  # noqa
-from src.bot import dp
+from src import dp
 from services import send_finished_torents
+
+sys.path.append('../')
 
 
 async def scheduler():

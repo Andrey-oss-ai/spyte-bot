@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.bot import bot, dp
+from src import bot, dp
 from src.core import FILES_FOLDER
 from src.core.loging import logger
 

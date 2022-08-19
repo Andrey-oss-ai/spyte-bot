@@ -49,4 +49,4 @@ async def send_steam_news():
                 caption=f'<a href="{elem.link}">{elem.text}</a>',
                 parse_mode='HTML'
             )
-    logger.info(f'Send {len(result)} news to {ADMIN_ID}')
+        logger.info(f'Send {len(result)} news to {ADMIN_ID}')
