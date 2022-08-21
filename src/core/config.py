@@ -12,6 +12,7 @@ def get_all_users():
 
 
 TOKEN = env.get('TELEGRAM_TOKEN')
+BD_NAME = env.get('DATABASE_NAME')
 ADMIN_ID = env.get('ADMIN_ID')
 USERS_ID = [int(x) for x in get_all_users()]
 URL_WEATHER = env.get('URL_WEATHER')

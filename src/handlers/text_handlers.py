@@ -22,4 +22,4 @@ async def weather_handler(message: Message):
 
 @dp.message_handler(Text(equals=['steam'], ignore_case=True))
 async def steam_handler(message: Message):
-    await send_steam_news()
+    await send_steam_news(answer=True)

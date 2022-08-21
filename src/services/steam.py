@@ -31,13 +31,14 @@ def parse_site():
             session.commit()
 
 
-async def send_steam_news():
+async def send_steam_news(answer=False):
     parse_site()
     result = session.execute(
         select(Game).where(Game.send == False)
     ).scalars().all()
     if not len(result):
-        await bot.send_message(ADMIN_ID, 'Новостей нет')
+        if answer:
+            await bot.send_message(ADMIN_ID, 'Новостей нет')
         logger.info('No news to send')
     else:
         for elem in result:

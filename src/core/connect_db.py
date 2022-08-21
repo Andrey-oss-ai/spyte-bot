@@ -1,11 +1,11 @@
 from sqlalchemy import Boolean, Column, Integer, String, create_engine
 from sqlalchemy.orm import Session, declarative_base
 
-from src.core import DB_FOLDER
+from src.core import DB_FOLDER, BD_NAME
 
 Base = declarative_base()
 DB_FOLDER.mkdir(exist_ok=True)
-engine = create_engine('sqlite:///db/Steam_news.db')
+engine = create_engine(f'sqlite:///db/{BD_NAME}.db')
 
 
 class Game(Base):

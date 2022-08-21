@@ -26,11 +26,12 @@ def torrent_connect():
 
 
 def get_torrents():
-    for elem in torrent_connect().torrents():
-        torrents[elem['name']] = {
-            'state': elem['state'],
-            'progress': f'{round(elem["progress"] * 100)}%',
-            'path': elem['save_path'][:-1],
-            'hash': elem['hash']
-        }
-    return torrents
+    if torrent_status():
+        for elem in torrent_connect().torrents():
+            torrents[elem['name']] = {
+                'state': elem['state'],
+                'progress': f'{round(elem["progress"] * 100)}%',
+                'path': elem['save_path'][:-1],
+                'hash': elem['hash']
+            }
+        return torrents
