@@ -8,14 +8,12 @@ torrents = {}
 def torrent_status():
     try:
         response = requests.head(URL_TORRENT_SERV)
-    except Exception as e:
-        print(f"NOT OK: {str(e)}")
+    except Exception:
         return False
     else:
         if response.status_code == 200:
             return True
         else:
-            print(f"NOT OK: HTTP response code {response.status_code}")
             return False
 
 

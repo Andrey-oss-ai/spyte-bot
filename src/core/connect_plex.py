@@ -8,19 +8,21 @@ account = MyPlexAccount(PLEX_USERNAME, PLEX_PASSWORD)
 def plex_status():
     try:
         plex = account.resource(PLEX_SERVER).connect()
-        return plex
+        return True
     except plexapi.exceptions.NotFound:
         return False
 
 
 def plex_library():
     if plex_status():
+        plex = account.resource(PLEX_SERVER).connect()
         all_libraries = {}
-        for elem in plex_status().library.sections():
+        for elem in plex.library.sections():
             all_libraries[elem.title] = ''.join(elem.locations)
         return all_libraries
 
 
 def plex_update(library):
     if plex_status():
-        plex_status().library.section(library).update()
+        plex = account.resource(PLEX_SERVER).connect()
+        plex.library.section(library).update()
