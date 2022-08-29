@@ -5,7 +5,7 @@ from src.bot import bot
 async def send_finished_torents():
     if torrent_status():
         for elem in get_torrents():
-            if get_torrents()[elem]['state'] == 'finished':
+            if get_torrents()[elem]['state'] == 'stalledUP':
                 await bot.send_message(ADMIN_ID, f'Скачивание {elem} завершено')
                 for library in plex_library():
                     if get_torrents()[elem]['state'] in library.values():
