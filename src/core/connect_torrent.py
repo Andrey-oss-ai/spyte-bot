@@ -2,8 +2,6 @@ from .config import URL_TORRENT_SERV
 from qbittorrent import Client
 import requests
 
-torrents = {}
-
 
 def torrent_status():
     try:
@@ -25,6 +23,7 @@ def torrent_connect():
 
 def get_torrents():
     if torrent_status():
+        torrents = {}
         for elem in torrent_connect().torrents():
             torrents[elem['name']] = {
                 'state': elem['state'],
