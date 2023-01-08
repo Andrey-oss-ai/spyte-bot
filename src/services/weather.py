@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 from columnar import columnar
 
 from src.bot import bot
-from src.core import ADMIN_ID, URL_WEATHER
-from src.core.loging import logger
+from src.settings import ADMIN_ID, URL_WEATHER
+from src.logger.log_settings import logger
 
 TABLE = 'weather-table'
 BODY = f'{TABLE}__body-cell'

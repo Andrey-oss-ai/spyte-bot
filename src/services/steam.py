@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 from sqlalchemy import select
 
 from src.bot import bot
-from src.core import ADMIN_ID, URL_STEAM, Game, db_connect
-from src.core.loging import logger
+from src.settings import ADMIN_ID, URL_STEAM, Game, db_connect
+from src.logger.log_settings import logger
 
 session = db_connect()
 

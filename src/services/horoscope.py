@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 
 from src.bot import bot
-from src.core import ADMIN_ID, URL_HOROSCOPE
-from src.core.loging import logger
+from src.settings import ADMIN_ID, URL_HOROSCOPE
+from src.logger.log_settings import logger
 
 
 def get_horoscope():

@@ -1,6 +1,6 @@
 from loguru import logger
 
-from src.core import LOG_FOLDER
+from src.settings import LOG_FOLDER
 
 LOG_FOLDER.mkdir(exist_ok=True)
 

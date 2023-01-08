@@ -1,4 +1,4 @@
-from src.core import ADMIN_ID, get_torrents, plex_library, plex_update, torrent_connect, torrent_status, plex_status
+from src.settings import ADMIN_ID, get_torrents, plex_library, plex_update, torrent_connect, torrent_status, plex_status
 from src.bot import bot
 
 finish_statuses = ['stalledUP', 'uploading']

@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, Column, Integer, String, create_engine
 from sqlalchemy.orm import Session, declarative_base
 
-from src.core import DB_FOLDER, BD_NAME
+from src.settings import DB_FOLDER, BD_NAME
 
 Base = declarative_base()
 DB_FOLDER.mkdir(exist_ok=True)

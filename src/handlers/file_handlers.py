@@ -1,8 +1,8 @@
 from pathlib import Path
 
 from src import bot, dp
-from src.core import FILES_FOLDER
-from src.core.loging import logger
+from src.settings import FILES_FOLDER
+from src.logger.log_settings import logger
 
 
 async def file_saved(message, filename):

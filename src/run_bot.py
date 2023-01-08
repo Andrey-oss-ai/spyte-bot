@@ -6,13 +6,12 @@ from aiogram import executor
 import asyncio
 import aioschedule as schedule
 import handlers  # noqa
-import middlewares  # noqa
 from src import dp
 from services import send_finished_torents
 
 
 async def scheduler():
-    schedule.every(1).minutes.do(send_finished_torents)
+    # schedule.every(1).minutes.do(send_finished_torents)
     while True:
         await schedule.run_pending()
         await asyncio.sleep(2)
