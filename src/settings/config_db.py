@@ -17,14 +17,6 @@ class Game(Base):
     send = Column(Boolean, default=False)
 
 
-class Reminders(Base):
-    __tablename__ = 'reminder'
-    id = Column(Integer, primary_key=True)
-    date = Column(String(200))
-    description = Column(String(200))
-    repeat = Column(Boolean, default=False)
-
-
 Base.metadata.create_all(engine)
 
 

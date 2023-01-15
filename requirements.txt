@@ -8,3 +8,4 @@ loguru~=0.6.0
 PlexAPI~=4.12.1
 python-qbittorrent~=0.4.2
 aioschedule~=0.5.2
+APScheduler~=3.9.1.post1

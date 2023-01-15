@@ -3,23 +3,22 @@ import sys
 sys.path.append('./')
 sys.path.append('/')
 from aiogram import executor
-import asyncio
-import aioschedule as schedule
 import handlers  # noqa
 from src import dp
-from services import send_finished_torents
+from services import send_finished_torrents
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+
+scheduler = AsyncIOScheduler(timezone='Europe/Moscow')
 
 
-async def scheduler():
-    # schedule.every(1).minutes.do(send_finished_torents)
-    while True:
-        await schedule.run_pending()
-        await asyncio.sleep(2)
+def add_schedulers_jobs():
+    scheduler.add_job(send_finished_torrents, 'interval', seconds=30)
+    #   scheduler.add_job(get_weather, 'cron', day_of_week='mon-sun', hour=09, minute=00, end_date='2025-10-13')
 
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    asyncio.ensure_future(scheduler())
+    add_schedulers_jobs()
+    scheduler.start()
     executor.start_polling(
         dp,
         skip_updates=True,

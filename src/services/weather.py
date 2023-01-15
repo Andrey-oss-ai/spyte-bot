@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from columnar import columnar
 
 from src.bot import bot
-from src.settings import ADMIN_ID, URL_WEATHER
+from src.settings import URL_WEATHER
 from src.logger.log_settings import logger
 
 TABLE = 'weather-table'
@@ -34,12 +34,12 @@ def get_weather():
                 f'{real}°'
             ]
         )
-
+    logger.info(f'Weather received')
     headers = None
     weather = columnar(data, headers, no_borders=True)
     return weather
 
 
-async def send_weather():
-    await bot.send_message(ADMIN_ID, get_weather())
-    logger.info(f'Send weather to {ADMIN_ID}')
+async def send_weather(user_id):
+    await bot.send_message(user_id, get_weather())
+    logger.info(f'Send weather to {user_id}')
