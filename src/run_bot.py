@@ -1,7 +1,9 @@
 import sys
 
+sys.path.append('../')
 sys.path.append('./')
 sys.path.append('/')
+
 from aiogram import executor
 import handlers  # noqa
 from src import dp
