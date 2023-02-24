@@ -68,6 +68,6 @@ async def send_finished_torrents():
                     for library in plex_libraries():
                         if torrent.path == library.path:
                             library.update()
-                            await bot.send_message(ADMIN_ID, f'Библиотека {library} обновлена')
+                            await bot.send_message(ADMIN_ID, f'Библиотека {library.name} обновлена')
                     torrent.delete()
                     await bot.send_message(ADMIN_ID, f'Торрент {torrent.name} удален')
